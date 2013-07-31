@@ -1,0 +1,40 @@
+{
+    "left_surround": "\r\n*",
+    "right_surround": "#\r\n",
+    "seperator": "=",
+    "wait_time": 1,
+    "command_failed_message": "*Block item#",
+    "exception_message": "*Illegal format#",
+    "serial": {
+        "baudrate": 57600,
+        "parity": "none",
+        "stopbits": 1,
+        "bytesize": 8
+    },
+    "command_list": {
+        "power": {
+            "command": "pow",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "volume": {
+            "command": "vol",
+            "actions": {
+                "up": "+",
+                "down": "-",
+                "status": "?"
+            }
+        },
+        "mute": {
+            "command": "mute",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        }
+    }
+}
