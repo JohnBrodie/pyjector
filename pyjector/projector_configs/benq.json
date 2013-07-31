@@ -1,5 +1,8 @@
 {
     "example": "here",
+    "left_surround": "/r/n",
+    "right_surround": "/r/n",
+    "seperator": "=",
     "serial": {
         "baudrate": 57600,
         "parity": "none",
