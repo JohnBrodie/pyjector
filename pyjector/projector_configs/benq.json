@@ -1,0 +1,9 @@
+{
+    "example": "here",
+    "serial": {
+        "baudrate": 57600,
+        "parity": "none",
+        "stopbits": 1,
+        "bytesize": 8
+    }
+}
