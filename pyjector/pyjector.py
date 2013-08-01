@@ -3,6 +3,7 @@
 .. moduleauthor:: John Brodie <john@brodie.me>
 
 """
+from time import sleep
 import json
 import os
 
@@ -70,6 +71,7 @@ class Pyjector(object):
         self.device_id = device_id
         self.get_config(device_id, kwargs)
         self.serial = self._initialize_pyserial(port)
+        self._create_commands()
 
     def get_config(self, device_id, overrides):
         """Get configuration for :mod:`pyserial` and the device.
@@ -81,7 +83,24 @@ class Pyjector(object):
         self.available_configs = self._populate_configs()
         self.config = self.get_device_config_from_id(device_id)
         self._apply_overrides(overrides)
+        self._validate_config()
         self.pyserial_config = self.get_pyserial_config()
+
+    def _validate_config(self):
+        """Do basic sanity-checking on the loaded `config`."""
+        if 'serial' not in self.config:
+            raise KeyError(
+                'Configuration file for {0} does not contain needed serial'
+                'config values. Add a `serial` section to the config.'.format(
+                    self.device_id)
+            )
+        if ('command_list' not in self.config or
+                len(self.config['command_list']) == 0):
+            raise KeyError(
+                'Configuration file for {0} does not define any commands. '
+                'Add a `serial` section to the config.'.format(
+                    self.device_id)
+            )
 
     def _populate_configs(self):
         """Load all json config files for devices.
@@ -142,13 +161,7 @@ class Pyjector(object):
         :raises: KeyError
 
         """
-        serial_config = self.config.get('serial', None)
-        if serial_config is None:
-            raise KeyError(
-                'Configuration file for {0} does not contain needed serial'
-                'config values. Add a `serial` section to the config.'.format(
-                    self.device_id)
-            )
+        serial_config = self.config['serial']
         for key, value in serial_config.items():
             if key not in self.possible_pyserial_settings:
                 raise KeyError(
@@ -189,7 +202,70 @@ class Pyjector(object):
         """
         return serial.Serial(port=port, **self.pyserial_config)
 
+    def _command_handler(self, command, action):
+        """Send the `command` and `action` to the device.
+
+        :param command: The command to send, for example, "power".
+        :param action: The action to send, for example, "on".
+
+        :returns: str -- The response from the device.
+
+        """
+        command_string = self._create_command_string(command, action)
+        print command_string
+        self.serial.write(command_string)
+        sleep(self.config.get('wait_time'), 1)
+        return self._get_response()
+
+    def _create_commands(self):
+        """Add commands to class."""
+        # TODO: Clean this up.
+        def _create_handler(command):
+            def handler(action):
+                return self._command_handler(command, action)
+            return handler
+        for command in self.command_spec:
+            setattr(self, command, _create_handler(command))
+
+    def _get_response(self):
+        """Get any message waiting in the serial port buffer."""
+        response = ''
+        while self.serial.inWaiting() > 0:
+            response += self.serial.read(1)
+        return response
+
+    def _create_command_string(self, command, action):
+        """Create a command string ready to send to the device."""
+        command_string = (
+            '{left_surround}{command}{seperator}'
+            '{action}{right_surround}'.format(
+                left_surround=self.config.get('left_surround', ''),
+                command=command,
+                seperator=self.config.get('seperator', ''),
+                action=action,
+                right_surround=self.config.get('right_surround', ''),
+            )
+        )
+        return command_string
+
+    @property
+    def command_spec(self):
+        """Return all command specifications.
+
+        :returns: dict -- All command specs, with the pattern:
+            "<alias>": {
+                "command": "<serial_command>",
+                "actions": {
+                    "<alias>": "<serial_command>",
+                    ...,
+                },
+            },
+            ...
+        """
+        return self.config['command_list']
+
 
 # TODO Remove me
 if __name__ == '__main__':
-    Pyjector()
+    pyj = Pyjector(port='/dev/cu.usbserial')
+    print pyj.mute('on')
