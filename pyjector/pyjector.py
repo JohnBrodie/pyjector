@@ -214,7 +214,7 @@ class Pyjector(object):
         command_string = self._create_command_string(command, action)
         print command_string
         self.serial.write(command_string)
-        sleep(self.config.get('wait_time'), 1)
+        sleep(self.config.get('wait_time', 1))
         return self._get_response()
 
     def _create_commands(self):
