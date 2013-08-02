@@ -6,3 +6,4 @@ include/
 lib/
 .git/
 .Python
+docs/_build/
