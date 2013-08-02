@@ -22,3 +22,6 @@ Indices and tables
 
 .. automodule:: pyjector
    :members:
+
+.. autoclass:: pyjector.pyjector.Pyjector
+   :members:
