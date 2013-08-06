@@ -20,6 +20,312 @@
                 "status": "?"
             }
         },
+        "source": {
+            "command": "sour",
+            "actions": {
+                "computer": "RGB",
+                "computer_22": "RGB2",
+                "component": "ypbr",
+                "dvi_a": "dviA",
+                "dvi_d": "dvid",
+                "hdmi": "hdmi",
+                "hdmi_2": "hdmi2",
+                "composite": "vid",
+                "s_video": "svid",
+                "network": "network",
+                "usb_display": "usbdisplay",
+                "usb_reader": "usbreader",
+                "status": "?"
+            }
+        },
+        "audio_source": {
+            "command": "audiosour",
+            "actions": {
+                "off": "off",
+                "computer_1": "RGB",
+                "computer_2": "RGB2",
+                "video": "vid",
+                "component": "ypbr",
+                "hdmi": "hdmi",
+                "hdmi_2": "hdmi2",
+                "status": "?"
+            }
+        },
+        "picture_mode": {
+            "command": "appmod",
+            "actions": {
+                "dynamic": "dynamic",
+                "presentation": "preset",
+                "srgb": "srgb",
+                "bright": "bright",
+                "living_room": "livingroom",
+                "game": "game",
+                "cinema": "cine",
+                "standard": "std",
+                "user_1": "user1",
+                "user_2": "user2",
+                "user_3": "user3",
+                "status": "?"
+            }
+        },
+        "contrast": {
+            "command": "con",
+            "actions": {
+                "up": "+",
+                "down": "-",
+                "status": "?"
+            }
+        },
+        "brightness": {
+            "command": "bri",
+            "actions": {
+                "up": "+",
+                "down": "-",
+                "status": "?"
+            }
+        },
+        "color": {
+            "command": "color",
+            "actions": {
+                "up": "+",
+                "down": "-",
+                "status": "?"
+            }
+        },
+        "sharpness": {
+            "command": "sharp",
+            "actions": {
+                "up": "+",
+                "down": "-",
+                "status": "?"
+            }
+        },
+        "color_temp": {
+            "command": "ct",
+            "actions": {
+                "warmer": "warmer",
+                "warm": "warm",
+                "normal": "normal",
+                "cool": "cool",
+                "cooler": "cooler",
+                "status": "?"
+            }
+        },
+        "aspect": {
+            "command": "asp",
+            "actions": {
+                "4_3": "4:3",
+                "16_9": "16:9",
+                "16_10": "16:10",
+                "auto": "AUTO",
+                "real": "REAL",
+                "letterbox": "LBOX",
+                "wide": "WIDE",
+                "anamorphic": "ANAM",
+                "status": "?"
+            }
+        },
+        "projector_position": {
+            "command": "pp",
+            "actions": {
+                "front_table": "FT",
+                "rear_table": "RE",
+                "front_ceiling": "FC",
+                "rear_ceiling": "RC",
+                "status": "?"
+            }
+        },
+        "quick_auto_search": {
+            "command": "QAS",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "direct_power": {
+            "command": "directpower",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "signal_power": {
+            "command": "autopower",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "standby_network": {
+            "command": "standbynet",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "standby_microphone": {
+            "command": "standbymic",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "standby_monitor": {
+            "command": "standbymnt",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "baud_rate": {
+            "command": "baud",
+            "actions": {
+                "2400": "2400",
+                "4800": "4800",
+                "9600": "9600",
+                "14400": "14400",
+                "19200": "19200",
+                "38400": "38400",
+                "57600": "57600",
+                "115200": "115200",
+                "status": "?"
+            }
+        },
+        "lamp_hours": {
+            "command": "ltim",
+            "actions": {
+                "status": "?"
+            }
+        },
+        "lamp_2_hours": {
+            "command": "ltim2",
+            "actions": {
+                "status": "?"
+            }
+        },
+        "lamp_mode": {
+            "command": "lampm",
+            "actions": {
+                "normal": "lnor",
+                "eco": "eco",
+                "smart_eco": "seco",
+                "dual_brightest": "dualbr",
+                "dual_reliable": "dualre",
+                "single_alternative": "single",
+                "single_alternative_eco": "singleeco",
+                "status": "?"
+            }
+        },
+        "model_name": {
+            "command": "modelname",
+            "actions": {
+                "status": "?"
+            }
+        },
+        "blank": {
+            "command": "blank",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "freeze": {
+            "command": "freeze",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "menu": {
+            "command": "menu",
+            "actions": {
+                "on": "on",
+                "off": "off",
+            }
+        },
+        "3d_sync": {
+            "command": "3d",
+            "actions": {
+                "off": "off",
+                "top_bottom": "tb",
+                "frame_sequential": "fs",
+                "status": "?"
+            }
+        },
+        "remote_receiver": {
+            "command": "rr",
+            "actions": {
+                "front_rear": "fr",
+                "front": "f",
+                "rear": "r",
+                "status": "?"
+            }
+        },
+        "instant_on": {
+            "command": "ins",
+            "actions": {
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "lamp_saver": {
+            "command": "lpsaver",
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "log_in_code": {
+            "command": "prjlogincode",
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "broadcasting": {
+            "command": "broadcasting",
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "amx_device_discovery": {
+            "command": "amxdd",
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "mac_address": {
+            "command": "macaddr",
+            "actions": {
+                "status": "?",
+            }
+        },
+        "high_altitude_mode": {
+            "command": "Highaltitude",
+                "on": "on",
+                "off": "off",
+                "status": "?"
+            }
+        },
+        "microphone_volume": {
+            "command": "micvol",
+            "actions": {
+                "up": "+",
+                "down": "-",
+                "status": "?"
+            }
+        },
         "volume": {
             "command": "vol",
             "actions": {
