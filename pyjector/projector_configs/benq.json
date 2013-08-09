@@ -248,7 +248,7 @@
             "command": "menu",
             "actions": {
                 "on": "on",
-                "off": "off",
+                "off": "off"
             }
         },
         "3d_sync": {
@@ -279,6 +279,7 @@
         },
         "lamp_saver": {
             "command": "lpsaver",
+            "actions": {
                 "on": "on",
                 "off": "off",
                 "status": "?"
@@ -286,6 +287,7 @@
         },
         "log_in_code": {
             "command": "prjlogincode",
+            "actions": {
                 "on": "on",
                 "off": "off",
                 "status": "?"
@@ -293,6 +295,7 @@
         },
         "broadcasting": {
             "command": "broadcasting",
+            "actions": {
                 "on": "on",
                 "off": "off",
                 "status": "?"
@@ -300,6 +303,7 @@
         },
         "amx_device_discovery": {
             "command": "amxdd",
+            "actions": {
                 "on": "on",
                 "off": "off",
                 "status": "?"
@@ -308,7 +312,7 @@
         "mac_address": {
             "command": "macaddr",
             "actions": {
-                "status": "?",
+                "status": "?"
             }
         },
         "high_altitude_mode": {
@@ -343,4 +347,3 @@
             }
         }
     }
-}
