@@ -12,6 +12,26 @@ import serial
 PATH = os.path.abspath(os.path.dirname(__file__)) + '/projector_configs/'
 
 
+class CommandFailedError(Exception):
+    """A command failed, usually due to an invalid state change."""
+
+
+class CommandExceptionError(Exception):
+    """An executed command caused the device to return an error."""
+
+
+class InvalidConfigError(Exception):
+    """Loading the configuration failed as it is invalid."""
+
+
+class DeviceConfigMissingError(Exception):
+    """The specified device has no associated config file."""
+
+
+class InvalidCommandError(Exception):
+    """The given command or action is invalid for the specified device."""
+
+
 class Pyjector(object):
 
     possible_pyserial_settings = [
@@ -95,14 +115,14 @@ class Pyjector(object):
     def _validate_config(self):
         """Do basic sanity-checking on the loaded `config`."""
         if 'serial' not in self.config:
-            raise KeyError(
+            raise InvalidConfigError(
                 'Configuration file for {0} does not contain needed serial'
                 'config values. Add a `serial` section to the config.'.format(
                     self.device_id)
             )
         if ('command_list' not in self.config or
                 len(self.config['command_list']) == 0):
-            raise KeyError(
+            raise InvalidConfigError(
                 'Configuration file for {0} does not define any commands. '
                 'Add a `serial` section to the config.'.format(
                     self.device_id)
@@ -135,11 +155,13 @@ class Pyjector(object):
         :returns: dict -- The device configuration, including default
         :mod:`pyserial` settings, as well as the command set.
 
+        :raises: DeviceConfigMissingError
+
         """
         try:
             config = self.available_configs[device_id]
         except KeyError:
-            raise KeyError(
+            raise DeviceConfigMissingError(
                 'Could not find device config with name {0}. '
                 'Check that the file exists in '
                 ' `pyjector/projector_configs/`'.format(device_id)
@@ -155,13 +177,13 @@ class Pyjector(object):
         :func:`get_device_config_from_id` must be called before this method.
 
         :returns: dict -- The config values for :class:`serial.Serial`.
-        :raises: KeyError
+        :raises: InvalidConfigError
 
         """
         serial_config = self.config['serial']
         for key, value in serial_config.items():
             if key not in self.possible_pyserial_settings:
-                raise KeyError(
+                raise InvalidConfigError(
                     'Configuration file for {0} specifies a serial '
                     'setting "{1}" not recognized by pyserial. Check '
                     'http://pyserial.sourceforge.net/pyserial_api.html'
@@ -173,7 +195,7 @@ class Pyjector(object):
                     serial_config[key] = (
                         self.pyserial_config_converter[key][value])
                 except KeyError:
-                    raise KeyError(
+                    raise InvalidConfigError(
                         'Configuration file for {0} specifies a serial '
                         'setting for "{1}" for key "{2}" not recognized '
                         'by pyserial. Check '
@@ -195,11 +217,11 @@ class Pyjector(object):
 
         :returns: str -- The response from the device.
 
-        :raises: KeyError if `action` is not valid for `command`.
+        :raises: InvalidCommandError if `action` is not valid for `command`.
 
         """
         if action not in self.get_actions_for_command(command):
-            raise KeyError(
+            raise InvalidCommandError(
                 '{0} is not a valid action for comand {1}'.format(
                     action, command)
             )
@@ -216,13 +238,13 @@ class Pyjector(object):
             return
         failed_message = self.config.get('command_failed_message')
         if failed_message is not None and failed_message in response:
-            raise KeyError(
+            raise CommandFailedError(
                 'Command failed! This is likely due to an invalid state '
                 'change.'
             )
         exception_message = self.config.get('exception_message')
         if exception_message is not None and exception_message in response:
-            raise KeyError(
+            raise CommandExceptionError(
                 'Command caused an exception on the device. Your command '
                 'is likely invalid, check your json projector config!'
             )
