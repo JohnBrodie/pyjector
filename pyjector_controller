@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+import argparse
+from pyjector import Pyjector
+
+parser = argparse.ArgumentParser()
+parser.add_argument('device', choices=['benq'], help='The device you wish to control')
+parser.add_argument('port', help='The serial port your device is connected to')
+parser.add_argument('command', help='The command to send to the device')
+parser.add_argument('action', help='The action to send to the device')
+parser.add_argument('-s', '--serial', help='Extra PySerial config values')
+args = parser.parse_args()
+
+pyjector = Pyjector(port=args.port, device_id=args.device)
+
+command = getattr(pyjector, args.command)
+command(args.action)
