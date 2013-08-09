@@ -42,6 +42,30 @@ pyjector.power('off')
 pyjector.serial.write('some other command here')
 ```
 
+From the command line
+=====================
+
+Want to control your projector from the command line?  Use the `pyjector_controller`
+script included.
+
+```
+Usage: pyjector_controller [-h] [-s SERIAL] {benq} port command action
+
+positional arguments:
+  {benq}                The device you wish to control
+  port                  The serial port your device is connected to
+  command               The command to send to the device
+  action                The action to send to the device
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SERIAL, --serial SERIAL
+                        Extra PySerial config values
+```
+
+
+Example: `./pyjector_controller benq "/dev/ttyUSB0" power on` to turn the projector on.
+
 Your device isn't supported?
 ============================
 
