@@ -4,6 +4,8 @@ Pyjector
 A generic library to easily send serial commands to your projector.
 Install via pip: `pip install pyjector`.
 
+Not sure how to use this library?  Check [this blog post](http://blog.brodie.me/2013/08/control-your-projector-from-your.html) for a more in-depth tutorial on how to set everything up.
+
 
 Usage
 =====
