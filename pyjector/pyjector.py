@@ -278,13 +278,14 @@ class Pyjector(object):
 
         """
         serial_command = self.command_spec[command]['command']
+        serial_action  = self.command_spec[command]['actions'][action]
         command_string = (
             '{left_surround}{command}{seperator}'
             '{action}{right_surround}'.format(
                 left_surround=self.config.get('left_surround', ''),
                 command=serial_command,
                 seperator=self.config.get('seperator', ''),
-                action=action,
+                action=serial_action,
                 right_surround=self.config.get('right_surround', ''),
             )
         )
