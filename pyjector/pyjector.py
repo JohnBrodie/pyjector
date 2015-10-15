@@ -6,6 +6,7 @@
 from time import sleep
 import json
 import os
+import logging
 
 import serial
 
@@ -226,9 +227,11 @@ class Pyjector(object):
                     action, command)
             )
         command_string = self._create_command_string(command, action)
+        logging.info("send: " + command_string)
         self.serial.write(command_string)
         sleep(self.config.get('wait_time', 1))
         response = self.get_response()
+        logging.info("recv: " + response)
         self._check_response(response)
         return response
 
