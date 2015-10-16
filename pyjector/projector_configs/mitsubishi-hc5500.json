@@ -1,0 +1,30 @@
+{
+    "left_surround": "00",
+    "right_surround": "\r",
+    "seperator": "",
+    "wait_time": 1,
+    "command_failed_message": "FIXME: error is noted with no response on this device",
+    "exception_message": "FIXME: error is noted with no response on this device",
+    "serial": {
+        "baudrate": 9600,
+        "parity": "none",
+        "stopbits": 1,
+        "bytesize": 8
+    },
+    "command_list": {
+        "power": {
+            "command": "",
+            "actions": {
+                "on": "!",
+                "off": "\"",
+                "status": "vP"
+            }
+        },
+        "source": {
+            "command": "",
+            "actions": {
+                "status": "vI"
+            }
+        }
+    }
+}
