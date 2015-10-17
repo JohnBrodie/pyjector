@@ -3,8 +3,6 @@
     "right_surround": "\r",
     "seperator": "",
     "wait_time": 1,
-    "command_failed_message": "FIXME: error is noted with no response on this device",
-    "exception_message": "FIXME: error is noted with no response on this device",
     "serial": {
         "baudrate": 9600,
         "parity": "none",
@@ -23,8 +21,34 @@
         "source": {
             "command": "",
             "actions": {
-                "status": "vI"
+                "status":    "vI",
+                "VGA":       "_r1",
+                "COMPONENT": "_c1",
+                "HDMI1":     "_d1",
+                "HDMI2":     "_d2",
+                "VIDEO":     "_v1",
+                "S-VIDEO":   "_v2"
             }
         }
+    },
+    "known_responses": {
+        "!":    "power on confirm",
+        "\"":   "power off confirm",
+        "vP1":  "power is on",
+        "vP0":  "power is off",
+
+        "vIr1": "input: VGA",
+        "vIc1": "input: COMPONENT",
+        "vId1": "input: HDMI1",
+        "vId2": "input: HDMI2",
+        "vIv1": "input: VIDEO",
+        "vIv2": "input: S-VIDEO",
+
+        "_r1":  "input changed to VGA",
+        "_c1":  "input changed to COMPONENT",
+        "_d1":  "input changed to HDMI1",
+        "_d2":  "input changed to HDMI2",
+        "_v1":  "input changed to VIDEO",
+        "_v2":  "input changed to S-VIDEO"
     }
 }

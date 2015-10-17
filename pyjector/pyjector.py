@@ -235,10 +235,26 @@ class Pyjector(object):
         self._check_response(response)
         return response
 
+    def _strip_response(self, response):
+        rs = right_surround=self.config.get('right_surround', '')
+        ls = left_surround=self.config.get('left_surround', '')
+        return response.rstrip(rs).lstrip(ls)
+
     def _check_response(self, response):
         """Check for errors in the response."""
         if response is None:
             return
+        known_responses = self.config.get('known_responses')
+        if known_responses:
+            response = self._strip_response(response)
+            if response in known_responses:
+                print known_responses[response]
+                return
+            else:
+                raise CommandFailedError(
+                    'Received an unknown response',
+                    response
+                )
         failed_message = self.config.get('command_failed_message')
         if failed_message is not None and failed_message in response:
             raise CommandFailedError(
