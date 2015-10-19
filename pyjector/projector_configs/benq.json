@@ -1,6 +1,6 @@
 {
-    "left_surround": "\r\n*",
-    "right_surround": "#\r\n",
+    "left_surround": "\r*",
+    "right_surround": "#\r",
     "seperator": "=",
     "wait_time": 1,
     "command_failed_message": "*Block item#",
