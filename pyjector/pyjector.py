@@ -227,11 +227,11 @@ class Pyjector(object):
                     action, command)
             )
         command_string = self._create_command_string(command, action)
-        logging.info("send: " + command_string)
+        logging.info("send: " + repr(command_string))
         self.serial.write(command_string)
         sleep(self.config.get('wait_time', 1))
         response = self.get_response()
-        logging.info("recv: " + response)
+        logging.info("recv: " + repr(response))
         self._check_response(response)
         return response
 
