@@ -210,6 +210,27 @@ class Pyjector(object):
         """Initialize the internal :class:`serial.Serial` object."""
         return serial.Serial(port=port, **self.pyserial_config)
 
+    def _send(self, data):
+        logging.debug("_send: " + repr(data))
+        self.serial.write(data)
+
+    def _recv(self, size=1):
+        data = self.serial.read(size)
+        if data:
+            logging.debug("_recv: " + repr(data))
+        return data
+
+    def _do_handshake(self):
+        h = self.config.get('handshake')
+        if h == None:
+            return
+        self._send(h['send'])
+        sleep(h['wait'])
+        expected = h['expect']
+        resp = self._recv(len(expected))
+        if resp != expected:
+            logging.error("unexpected response to handshake " + repr(resp))
+
     def _command_handler(self, command, action):
         """Send the `command` and `action` to the device.
 
@@ -228,7 +249,8 @@ class Pyjector(object):
             )
         command_string = self._create_command_string(command, action)
         logging.info("send: " + repr(command_string))
-        self.serial.write(command_string)
+        self._do_handshake()
+        self._send(command_string)
         sleep(self.config.get('wait_time', 1))
         response = self.get_response()
         logging.info("recv: " + repr(response))
@@ -286,7 +308,7 @@ class Pyjector(object):
         """
         response = ''
         while self.serial.inWaiting() > 0:
-            response += self.serial.read(1)
+            response += self._recv(1)
         return response
 
     def _create_command_string(self, command, action):

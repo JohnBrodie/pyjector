@@ -1,5 +1,10 @@
 {
-    "left_surround": "\r*",
+    "handshake": {
+            "send": "\r",
+            "wait": 1,
+            "expect": ">"
+    },
+    "left_surround": "*",
     "right_surround": "#\r",
     "seperator": "=",
     "wait_time": 1,
