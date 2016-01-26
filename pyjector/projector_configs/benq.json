@@ -322,6 +322,7 @@
         },
         "high_altitude_mode": {
             "command": "Highaltitude",
+            "actions": {
                 "on": "on",
                 "off": "off",
                 "status": "?"
