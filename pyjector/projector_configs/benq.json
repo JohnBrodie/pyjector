@@ -11,7 +11,7 @@
     "command_failed_message": "*Block item#",
     "exception_message": "*Illegal format#",
     "serial": {
-        "baudrate": 57600,
+        "baudrate": 115200,
         "parity": "none",
         "stopbits": 1,
         "bytesize": 8
@@ -353,3 +353,4 @@
             }
         }
     }
+}
