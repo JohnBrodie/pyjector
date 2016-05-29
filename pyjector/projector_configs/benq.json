@@ -261,6 +261,7 @@
             "actions": {
                 "off": "off",
                 "top_bottom": "tb",
+                "side_by_side": "sbs",
                 "frame_sequential": "fs",
                 "status": "?"
             }
