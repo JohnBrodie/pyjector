@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
     name='Pyjector',
-    version='0.2.2',
+    version='0.2.3',
     description='Control your projector over a serial port',
     author='John Brodie',
     author_email='john@brodie.me',
