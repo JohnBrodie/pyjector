@@ -212,7 +212,7 @@ class Pyjector(object):
 
     def _send(self, data):
         logging.debug("_send: " + repr(data))
-        self.serial.write(data)
+        self.serial.write(data.encode())
 
     def _recv(self, size=1):
         data = self.serial.read(size)
